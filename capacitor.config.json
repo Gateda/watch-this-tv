@@ -1,0 +1,9 @@
+{
+  "appId": "com.dave.watchthis",
+  "appName": "Watch This",
+  "webDir": "www",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https"
+  }
+}

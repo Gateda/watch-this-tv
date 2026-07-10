@@ -1,0 +1,49 @@
+<!--
+  After running `npx cap add android`, Capacitor generates:
+    android/app/src/main/AndroidManifest.xml
+
+  Edit the <application> and main <activity> blocks in that file to match this shape.
+  Everything else Capacitor generates can stay as-is.
+-->
+
+<application
+    android:allowBackup="true"
+    android:icon="@mipmap/ic_launcher"
+    android:label="@string/app_name"
+    android:roundIcon="@mipmap/ic_launcher_round"
+    android:banner="@drawable/banner"
+    android:supportsRtl="true"
+    android:theme="@style/AppTheme">
+
+    <!--
+      android:banner is Fire TV-specific — it's the 320x180 tile image shown in the
+      Fire TV home screen grid. Without it, Fire TV either shows a generic placeholder
+      or (on some launchers) hides the app from the grid entirely, even though it's
+      still installed and launchable from Settings > Applications.
+      Put a 320x180 PNG at: android/app/src/main/res/drawable/banner.png
+    -->
+
+    <activity
+        android:name=".MainActivity"
+        android:exported="true"
+        android:label="@string/title_activity_main"
+        android:theme="@style/AppTheme.NoActionBarLaunch"
+        android:launchMode="singleTask"
+        android:screenOrientation="landscape"
+        android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+            <!--
+              LEANBACK_LAUNCHER is what makes Fire TV treat this as a proper TV app
+              with a home-screen tile, instead of a phone app that merely happens to
+              run on Fire TV hardware. Required for a normal Fire TV experience.
+            -->
+            <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+        </intent-filter>
+    </activity>
+</application>
+
+<!-- Capacitor adds this automatically, but confirm it's present — required for the
+     app's fetch() calls to ESPN and Anthropic to work at all. -->
+<uses-permission android:name="android.permission.INTERNET" />
