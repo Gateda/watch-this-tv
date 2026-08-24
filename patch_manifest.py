@@ -20,6 +20,12 @@ if 'LEANBACK_LAUNCHER' not in xml:
         '                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />',
         1
     )
-
+if '<queries>' not in xml:
+    queries_block = (
+        '    <queries>\n'
+        '        <package android:name="com.hulu.plus" />\n'
+        '    </queries>\n'
+    )
+    xml = re.sub(r'(</application>)', queries_block + r'\1', xml, count=1)
 p.write_text(xml)
 print("AndroidManifest.xml patched for Fire TV.")
