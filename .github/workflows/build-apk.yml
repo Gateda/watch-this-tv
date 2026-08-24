@@ -48,6 +48,9 @@ jobs:
       - name: Patch AndroidManifest for Fire TV
         run: python3 patch_manifest.py
 
+      - name: Add native AppLauncher plugin
+        run: python3 patch_native_plugin.py
+
       - name: Build debug APK
         run: |
           cd android
