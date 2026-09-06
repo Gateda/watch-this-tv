@@ -51,7 +51,7 @@ jobs:
       - name: Add native AppLauncher plugin
         run: python3 patch_native_plugin.py
 
-       - name: Add launcher icon
+      - name: Add launcher icon
         run: python3 patch_icons.py
 
       - name: Build debug APK
